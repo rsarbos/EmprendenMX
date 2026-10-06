@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-prose: 'Newsreader', Georgia, serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  body {
+    font-family: var(--font-prose);
+    background-color: #fcf9f2;
+    color: #1c1c18;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, .font-serif-broadsheet {
+    font-family: var(--font-display);
+  }
+
+  .font-mono-data {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Authentic Broadsheet Lines */
+.border-double-broadsheet {
+  border-top: 3px double #1c1c18;
+  border-bottom: 1px solid #1c1c18;
+}
+
+.border-hairline {
+  border-color: #d6d0c2;
+}
+
+.bg-paper-light {
+  background-color: #ffffff;
+}
+
+.bg-paper-dim {
+  background-color: #f5f2ea;
+}
+
+/* Custom range slider for broadsheet aesthetic */
+input[type="range"].broadsheet-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #1c1c18;
+  height: 3px;
+  cursor: pointer;
+}
+
+input[type="range"].broadsheet-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: #000000;
+  border: 2px solid #fcf9f2;
+  border-radius: 0px; /* strict sharp corner as per broadsheet specification */
+  box-shadow: 0 0 0 1px #000000;
+  cursor: pointer;
+}
+
+input[type="range"].broadsheet-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: #000000;
+  border: 2px solid #fcf9f2;
+  border-radius: 0px;
+  box-shadow: 0 0 0 1px #000000;
+  cursor: pointer;
+}
+
+/* Print Styles for Fiscal Dictamen PDF */
+@media print {
+  body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+}

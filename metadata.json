@@ -1,0 +1,6 @@
+{
+  "name": "EMPRENDENMEX — Simulador Fiscal & Club de Estrategas",
+  "description": "Gaceta de ingeniería financiera, simulador táctico de optimización impositiva y club fiduciario para directores corporativos en México.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
