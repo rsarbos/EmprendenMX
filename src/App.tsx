@@ -16,11 +16,13 @@ import { AppointmentModal } from './components/AppointmentModal';
 import { VipAccessModal } from './components/VipAccessModal';
 import { DocumentCheckoutModal } from './components/DocumentCheckoutModal';
 import { SearchModal } from './components/SearchModal';
+import { BlogArticleModal } from './components/BlogArticleModal';
 import { BoutiqueProduct, SimulationInputs, SimulationResults } from './types';
 import { calculateFiscalShielding } from './utils/taxCalculator';
+import { BlogArticle } from './data/blogArticles';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<'simulador' | 'club' | 'portada' | 'dossiers' | 'acerca'>('simulador');
+  const [activeTab, setActiveTab] = useState<'simulador' | 'club' | 'portada' | 'dossiers' | 'acerca'>('portada');
   
   // Modals state
   const [isDictamenOpen, setIsDictamenOpen] = useState(false);
@@ -38,6 +40,7 @@ export default function App() {
   const [isVipModalOpen, setIsVipModalOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [selectedBoutiqueProduct, setSelectedBoutiqueProduct] = useState<BoutiqueProduct | null>(null);
+  const [selectedArticle, setSelectedArticle] = useState<BlogArticle | null>(null);
 
   const handleOpenDictamen = (results: SimulationResults, inputs: SimulationInputs) => {
     setDictamenInputs(inputs);
@@ -47,6 +50,10 @@ export default function App() {
 
   const handleOpenApplication = (planName: string, price: string) => {
     setIsAppointmentOpen(true);
+  };
+
+  const handleSelectArticle = (article: BlogArticle) => {
+    setSelectedArticle(article);
   };
 
   return (
@@ -97,6 +104,8 @@ export default function App() {
               setActiveTab('club');
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
+            onSelectArticle={handleSelectArticle}
+            onAcquireKit={(product) => setSelectedBoutiqueProduct(product)}
           />
         )}
 
@@ -154,6 +163,17 @@ export default function App() {
       <DocumentCheckoutModal
         product={selectedBoutiqueProduct}
         onClose={() => setSelectedBoutiqueProduct(null)}
+      />
+
+      <BlogArticleModal
+        article={selectedArticle}
+        onClose={() => setSelectedArticle(null)}
+        onAcquireKit={(kit) => setSelectedBoutiqueProduct(kit)}
+        onNavigateSimulador={() => {
+          setSelectedArticle(null);
+          setActiveTab('simulador');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
       />
 
       <SearchModal

@@ -19,6 +19,7 @@ export const DossiersReservados: React.FC<DossiersReservadosProps> = ({ onOpenVi
       date: 'Enero 2025',
       summary: 'Análisis detallado de sentencia absolutoria del Tribunal Federal de Justicia Administrativa validando deducción de regalías intercompañía.',
       securityLevel: 'Nivel 02 Estratega',
+      isUpcoming: false,
     },
     {
       id: 'dos-02',
@@ -29,6 +30,8 @@ export const DossiersReservados: React.FC<DossiersReservadosProps> = ({ onOpenVi
       date: 'Febrero 2025',
       summary: 'Plantilla de asamblea extraordinaria blindada para evitar dilución involuntaria de fundadores ante rondas de capital privado.',
       securityLevel: 'Nivel 03 Institucional',
+      isUpcoming: true,
+      upcomingBadge: 'PRÓXIMAMENTE // EN PROTOCOLIZACIÓN',
     },
     {
       id: 'dos-03',
@@ -39,6 +42,8 @@ export const DossiersReservados: React.FC<DossiersReservadosProps> = ({ onOpenVi
       date: 'Marzo 2025',
       summary: 'Estudio económico estándar para soportar transferencias de valor hacia filiales estadounidenses sin multas del SAT o IRS.',
       securityLevel: 'Nivel 03 Institucional',
+      isUpcoming: true,
+      upcomingBadge: 'PRÓXIMAMENTE // CALIBRACIÓN OCDE 2025',
     },
     {
       id: 'dos-04',
@@ -49,6 +54,7 @@ export const DossiersReservados: React.FC<DossiersReservadosProps> = ({ onOpenVi
       date: 'Diciembre 2024',
       summary: 'Desglose paso a paso de los 14 indicadores que la Administración General de Auditoría Fiscal Federal evalúa al calificar un acto jurídico.',
       securityLevel: 'Acceso Libre',
+      isUpcoming: false,
     },
   ];
 
@@ -125,7 +131,13 @@ export const DossiersReservados: React.FC<DossiersReservadosProps> = ({ onOpenVi
             <div>
               <div className="flex items-center justify-between text-[10px] font-mono mb-2">
                 <span className="font-bold text-[#ba1a1a] uppercase">{item.code}</span>
-                <span className="text-[#666]">{item.date}</span>
+                {item.isUpcoming ? (
+                  <span className="bg-[#ebe7dc] text-[#7a1c1c] border border-[#d6d0c2] px-1.5 py-0.2 font-bold text-[9px]">
+                    {item.upcomingBadge}
+                  </span>
+                ) : (
+                  <span className="text-[#666]">{item.date}</span>
+                )}
               </div>
 
               <h2 className="text-lg font-bold font-serif-broadsheet uppercase text-[#0a0a0a] mb-2 leading-snug">
@@ -143,14 +155,25 @@ export const DossiersReservados: React.FC<DossiersReservadosProps> = ({ onOpenVi
                 <span>{item.securityLevel}</span>
               </span>
 
-              <button
-                type="button"
-                onClick={onOpenVipModal}
-                className="bg-[#0a0a0a] text-[#fcf9f2] text-xs font-mono font-bold px-3 py-1.5 uppercase hover:bg-[#222] transition-colors flex items-center space-x-1"
-              >
-                <Eye className="w-3.5 h-3.5" />
-                <span>CONSULTAR</span>
-              </button>
+              {item.isUpcoming ? (
+                <button
+                  type="button"
+                  onClick={onOpenVipModal}
+                  className="bg-[#ebe7dc] text-[#555] border border-[#d6d0c2] text-xs font-mono font-bold px-3 py-1.5 uppercase hover:bg-[#ded9cc] transition-colors flex items-center space-x-1"
+                >
+                  <Lock className="w-3.5 h-3.5 text-[#888]" />
+                  <span>PRÓXIMAMENTE</span>
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={onOpenVipModal}
+                  className="bg-[#0a0a0a] text-[#fcf9f2] text-xs font-mono font-bold px-3 py-1.5 uppercase hover:bg-[#222] transition-colors flex items-center space-x-1"
+                >
+                  <Eye className="w-3.5 h-3.5" />
+                  <span>CONSULTAR</span>
+                </button>
+              )}
             </div>
           </div>
         ))}

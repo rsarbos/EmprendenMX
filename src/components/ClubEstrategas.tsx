@@ -14,6 +14,7 @@ import {
   ArrowUpRight
 } from 'lucide-react';
 import { BoutiqueProduct } from '../types';
+import { DETAILED_BOUTIQUE_KITS } from '../data/boutiqueKits';
 
 interface ClubEstrategasProps {
   onSelectProduct: (product: BoutiqueProduct) => void;
@@ -29,50 +30,7 @@ export const ClubEstrategas: React.FC<ClubEstrategasProps> = ({
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('annual');
   const [activeCurvePoint, setActiveCurvePoint] = useState<number>(2);
 
-  const boutiqueItems: BoutiqueProduct[] = [
-    {
-      id: 'kit-sas',
-      code: 'KIT DE DOCUMENTACIÓN #01',
-      title: 'Blindaje Estatutario SAS',
-      description: 'Estatutos modelo blindados contra bloqueos accionariales, cláusulas drag-along/tag-along y control rector del Administrador Único.',
-      tags: ['Word', 'PDF', 'Cédula'],
-      priceUSD: 49,
-      format: 'DOCX + PDF Notariado',
-      details: [
-        'Cláusula de exclusión de socios morosos sin juicio mercantil prolongado.',
-        'Poderes irrevocables especiales para actos de dominio delimitados.',
-        'Cédula de asambleas ordinarias y extraordinarias pre-aprobadas.',
-      ]
-    },
-    {
-      id: 'kit-llc',
-      code: 'ESTRUCTURACIÓN CROSS-BORDER #02',
-      title: 'Paquete Estructuración LLC',
-      description: 'Operating Agreement para LLCs de Wyoming/Delaware administradas por socios mexicanos, previniendo doble tributación internacional.',
-      tags: ['Guía IRS Form 5472', 'Minuta'],
-      priceUSD: 79,
-      format: 'Bilingual Template + IRS Checklist',
-      details: [
-        'Operating Agreement single-member y multi-member con cláusulas US-MX.',
-        'Guía paso a paso de cumplimiento IRS Form 5472 y Pro-forma 1120.',
-        'Estrategia de transferencia de utilidades sin retención fiscal doble.',
-      ]
-    },
-    {
-      id: 'kit-regalias',
-      code: 'VALUACIÓN INTANGIBLES #03',
-      title: 'Protocolo de Regalías de Marca',
-      description: 'Contrato de licencia marcaria con sustento de materialidad y razón de negocios según el artículo 5-A del Código Fiscal de la Federación.',
-      tags: ['Estudio de Razón', 'Contrato'],
-      priceUSD: 69,
-      format: 'Legal Contract + Economic Evidence Kit',
-      details: [
-        'Contrato bilateral de cesión y uso temporal de marcas registradas ante IMPI.',
-        'Metodología de cálculo de tasa de regalía arm’s length (precios de transferencia).',
-        'Checklist probatorio de materialidad e intangibles para auditorías SAT.',
-      ]
-    }
-  ];
+  const boutiqueItems = DETAILED_BOUTIQUE_KITS;
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
@@ -190,8 +148,8 @@ export const ClubEstrategas: React.FC<ClubEstrategasProps> = ({
           <div>
             <div className="flex items-center justify-between text-[10px] font-mono tracking-wider uppercase mb-2">
               <span className="text-[#666] font-semibold">NIVEL 03 / INSTITUCIONAL</span>
-              <span className="bg-[#0a0a0a] text-[#e5c07b] px-2 py-0.5 font-bold">
-                CUPO LIMITADO
+              <span className="bg-[#0a0a0a] text-[#e5c07b] border border-[#e5c07b] px-2 py-0.5 font-bold text-[9px] tracking-wider">
+                PRÓXIMAMENTE // Q4 2025
               </span>
             </div>
 
@@ -234,10 +192,11 @@ export const ClubEstrategas: React.FC<ClubEstrategasProps> = ({
 
           <button
             type="button"
-            onClick={() => onOpenApplication('Mesa Privada de Consejo', billingCycle === 'annual' ? '$149 USD/mes' : '$199 USD/mes')}
-            className="w-full bg-[#0a0a0a] text-[#fcf9f2] py-3.5 px-4 font-mono text-xs font-bold uppercase tracking-wider hover:bg-[#222] transition-colors border border-[#0a0a0a]"
+            onClick={() => onOpenApplication('Mesa Privada de Consejo (Lista de Espera)', billingCycle === 'annual' ? '$149 USD/mes' : '$199 USD/mes')}
+            className="w-full bg-[#0a0a0a] text-[#fcf9f2] py-3.5 px-4 font-mono text-xs font-bold uppercase tracking-wider hover:bg-[#222] transition-colors border border-[#0a0a0a] flex items-center justify-center space-x-2"
           >
-            SOLICITAR ADMISIÓN
+            <Lock className="w-3.5 h-3.5 text-[#e5c07b]" />
+            <span>SOLICITAR LISTA DE ESPERA (PRÓXIMAMENTE)</span>
           </button>
         </div>
 
@@ -443,8 +402,11 @@ export const ClubEstrategas: React.FC<ClubEstrategasProps> = ({
                   {item.id === 'kit-regalias' && <Award className="w-4 h-4 text-[#0a0a0a]" />}
                 </div>
 
-                <div className="text-[9px] font-mono tracking-wider text-[#666] uppercase mb-1 font-semibold">
-                  {item.code}
+                <div className="flex items-center justify-between text-[9px] font-mono tracking-wider text-[#666] uppercase mb-1 font-semibold">
+                  <span>{item.code}</span>
+                  <span className="bg-[#ebf2ed] text-[#1e4d2b] border border-[#1e4d2b] px-1.5 py-0.2 font-bold">
+                    PAQUETE .ZIP
+                  </span>
                 </div>
 
                 <h3 className="text-lg font-bold font-serif-broadsheet text-[#0a0a0a] uppercase mb-2">
@@ -480,9 +442,10 @@ export const ClubEstrategas: React.FC<ClubEstrategasProps> = ({
                 <button
                   type="button"
                   onClick={() => onSelectProduct(item)}
-                  className="bg-[#0a0a0a] text-[#fcf9f2] text-xs font-mono font-bold px-4 py-2 uppercase hover:bg-[#222] transition-colors border border-[#0a0a0a]"
+                  className="bg-[#0a0a0a] text-[#fcf9f2] text-xs font-mono font-bold px-3.5 py-2 uppercase hover:bg-[#222] transition-colors border border-[#0a0a0a] flex items-center space-x-1.5"
                 >
-                  ADQUIRIR KIT
+                  <Download className="w-3.5 h-3.5 text-[#e5c07b]" />
+                  <span>DESCARGAR (.ZIP)</span>
                 </button>
               </div>
 

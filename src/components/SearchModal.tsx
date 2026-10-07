@@ -17,13 +17,16 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   const [query, setQuery] = useState('');
 
   const quickIndex = [
-    { title: 'Simulador de Ingeniería Fiscal & Blindaje', tab: 'simulador' as const, type: 'Herramienta Cuantitativa' },
-    { title: '¿Qué es Emprendenmex? Manifiesto & Todas sus Funciones', tab: 'acerca' as const, type: 'Manifiesto Institucional' },
-    { title: 'Generador de Despachos & Contexto Maestro para IA', tab: 'acerca' as const, type: 'Motor Editorial' },
+    { title: 'Simulador Táctico Integral de Carga Impositiva', tab: 'simulador' as const, type: 'Herramienta Cuantitativa' },
+    { title: 'Gaceta Fiduciaria Diaria // Publicaciones Oficiales', tab: 'portada' as const, type: 'Publicación Diaria' },
+    { title: 'Blog: Blindaje Estatutario SAS (Kit #01)', tab: 'portada' as const, type: 'Artículo de Blog // Kit' },
+    { title: 'Blog: Estructuración Cross-Border LLC & Marcas (Kit #02 & #03)', tab: 'portada' as const, type: 'Artículo de Blog // Kit' },
+    { title: 'Blog: Protocolo de Regalías de Marca ante el IMPI (Kit #03)', tab: 'portada' as const, type: 'Artículo de Blog // Kit' },
+    { title: 'Suite de Simuladores: Umbral RESICO $3.5M & Dividendos CUFIN', tab: 'portada' as const, type: 'Simuladores Portada' },
+    { title: 'Protocolos en Próximamente (Fideicomisos & Valuador Algorítmico)', tab: 'portada' as const, type: 'Laboratorio Fiduciario' },
+    { title: '¿Qué es Emprendenmex? Manifiesto & Los 6 Pilares Institucionales', tab: 'acerca' as const, type: 'Manifiesto Institucional' },
     { title: 'Artículo 5-A CFF: Razón de Negocios y Materialidad', tab: 'portada' as const, type: 'Jurisprudencia' },
-    { title: 'Blindaje Estatutario SAS (Cláusulas Drag & Tag)', tab: 'club' as const, type: 'Boutique Modular' },
-    { title: 'Contratos de Mutuo Intercompañía con Pagarés Notariados', tab: 'simulador' as const, type: 'Hack Táctico #01' },
-    { title: 'Licenciamiento de Propiedad Intelectual y Marcas', tab: 'simulador' as const, type: 'Hack Táctico #02' },
+    { title: 'Boutique Modular: Descarga de Kits en ZIP Oficial', tab: 'club' as const, type: 'Boutique Modular' },
     { title: 'Mesa Privada de Consejo Institucional', tab: 'club' as const, type: 'Membresía VIP' },
     { title: 'Precedentes TFJA sobre Deducción de Software', tab: 'dossiers' as const, type: 'Dossier Reservado' },
   ];
